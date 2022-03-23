@@ -8,6 +8,10 @@
 - Input audio from media is converted into a spectrogram using the librosa library, and then fed to the model which comprises of ResNet50V2 followed by a Temporal Convolutional Network, which predicts whether the given audio is deepfake or not.
 - For body language, the entire body of a person is extracted using YOLOv3 followed by a Temporal Neural Network for classification.
 
+## Setup
+Install all the dependencies<br>
+`pip3 install -r requirements.txt`
+
 ## Running the Models
 
 Download the project from the GitHub repository<br>
@@ -20,11 +24,11 @@ To predict whether the given input is deepfake or pristine, run the code accordi
 - It is better to run the python programs on a GPU as it may require high computation while running the deep learning models.
 
 A. **Deepfake Detection for Images**:
-1. Run `python test_image.py`
+1. Run `python test_image.py -f "path to your file"`
 
 B. **Deepfake Detection for Audio**:
 1. Download the checkpoint from [here](https://drive.google.com/file/d/1vJXh8j3E5TgjMHvegBiFiM9w9V_CsVPs/view?usp=sharing). Place the downloaded audio checkpoint in "checkpoints" folder.
-2. Run `python test_audio.py`
+2. Run `python test_audio.py -f "path to your file"`
 
 C. **Deepfake Detection for Videos**:
-1. Run `python test_video.py`
+1. Run `python test_video.py -f "path to your file"`
