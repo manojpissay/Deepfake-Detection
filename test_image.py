@@ -1,5 +1,3 @@
-# from utils import data_generator
-
 from tcn import compiled_tcn
 import numpy as np
 import tensorflow as tf
@@ -7,6 +5,7 @@ from PIL import Image, ImageDraw
 import glob
 import os
 import json
+import argparse
 
 from tcn import TCN, tcn_full_summary
 from tensorflow.keras.layers import Dense,Activation, Reshape, Input, BatchNormalization
@@ -40,7 +39,6 @@ def detect_image(filename = "predict/test_image.jpg"):
     test_images = test_images.astype('float32')
     test_images /= 255
     p = model.predict(test_images)
-    print(p)
     prediction = p[0][0]
     print("Model prediction for:",filename,sep=" ")
     print("Confidence of it being a deepfake:",prediction)
@@ -164,4 +162,11 @@ def test_tfrecords(tfrecord_number):
     print("Real: ",real,"Fake: ",real)
 
 if __name__ == '__main__':
-    detect_image(filename = "predict/df_image.jpg")
+    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--file", help = "Pass file to the model")
+    args = parser.parse_args()
+    
+    # predict/df_image.jpg is a sample deepfake image
+    filename = args.file if args.file!=None else "predict/df_image.jpg"
+    detect_image(filename)

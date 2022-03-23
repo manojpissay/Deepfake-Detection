@@ -8,6 +8,7 @@ import os
 import cv2
 from test_body import detect_video_body
 import shutil
+import argparse
 
 def detect_video_face(img, face_model):
     test_img = img.convert("L")
@@ -115,4 +116,10 @@ def detect_video(filename = "predict/df_video1.mp4"):
     return real_face_frames, df_face_frames, real_body_frames, df_body_frames
 
 if __name__ == '__main__':
-    detect_video(filename = "predict/df_video.mp4")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--file", help = "Pass file to the model")
+    args = parser.parse_args()
+    
+    # predict/df_video.mp4 is a sample deepfake video
+    filename = args.file if args.file!=None else "predict/df_video.mp4"
+    detect_video(filename)

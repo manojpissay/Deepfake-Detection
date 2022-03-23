@@ -5,6 +5,7 @@ from PIL import Image, ImageDraw
 import glob
 import librosa
 import cv2
+import argparse
 
 import tensorflow as tf
 from tensorflow.keras.applications import ResNet50V2
@@ -48,7 +49,7 @@ def detect_audio(filename = "predict/real_audio1.flac"):
         x_train.append(img[:,itr:itr+60])
         itr+=60
     x_train = np.array(x_train)
-    print(x_train.shape)
+    # print(x_train.shape)
     x_train = x_train.astype('float32')
     model = Sequential()
     model.add(Input(shape=(128,60,3)))
@@ -76,4 +77,10 @@ def detect_audio(filename = "predict/real_audio1.flac"):
 
 
 if __name__ == '__main__':
-    detect_audio(filename = "predict/df_audio.flac")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--file", help = "Pass file to the model")
+    args = parser.parse_args()
+    
+    # predict/df_audio.flac is a sample deepfake audio
+    filename = args.file if args.file!=None else "predict/df_audio.flac"
+    detect_audio(filename)
