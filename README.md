@@ -1,5 +1,6 @@
 # Deepfake Detection of Media using Deep Neural Networks
 
+Code for the paper: [Detection of Morphed Face, Body, Audio signals using Deep Neural Networks](https://ieeexplore.ieee.org/document/9825423)
 ## About
 - 3 different neural networks are used to detect any deformity/irregularity in media based on the person's face, audio and body language.
 - The face deepfake model uses a Maximum Margin Object Detector (to extract the face) followed by a Temporal Neural Network for classification.
